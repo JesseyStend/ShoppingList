@@ -1,8 +1,10 @@
 # ShoppingList
 
-A webpage based online shoppinglist
+A webpage based online shopping list
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
+
+- test
 
 ## Available Scripts
 
