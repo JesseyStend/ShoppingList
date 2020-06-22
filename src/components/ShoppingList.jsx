@@ -5,6 +5,7 @@ class ShoppingList extends Component {
   state = {
     list: [],
     savedList: [],
+    formValue: '',
   };
 
   constructor(props) {
@@ -13,6 +14,7 @@ class ShoppingList extends Component {
     const { savedList } = this.state;
     this.state.list = list != null ? list : [];
     this.state.savedList.push.apply(savedList, this.state.list);
+    this.AddItem = this.AddItem.bind(this);
   }
 
   render() {
@@ -26,9 +28,13 @@ class ShoppingList extends Component {
         <button onClick={() => this.Save()} className="btn btn-primary btn-sm m-2">
           Save
         </button>
-        <button onClick={() => this.AddItem()} className="btn btn-success btn-sm m-2">
-          Add
-        </button>
+        <form>
+          <input type="text" ref={(c) => (this.state.formValue = c)} />
+          <button onClick={this.AddItem} className="btn btn-success btn-sm m-2">
+            Add
+          </button>
+        </form>
+
         {this.state.list.map((counter) => (
           <ShoppingItem key={counter.id} onDelete={() => this.RemoveItem(counter.id)} counter={counter}></ShoppingItem>
         ))}
@@ -36,9 +42,11 @@ class ShoppingList extends Component {
     );
   }
 
-  AddItem() {
+  AddItem(e) {
+    e.preventDefault();
     const { list } = this.state;
     list.push({
+      name: this.state.formValue.value,
       id: list.length,
       value: 0,
     });

@@ -7,18 +7,22 @@ class App extends Component {
   state = {
     counters: [
       {
+        name: 'test',
         id: 0,
         value: 0,
       },
       {
+        name: 'test',
         id: 1,
         value: 0,
       },
       {
+        name: 'test',
         id: 2,
         value: 0,
       },
       {
+        name: 'test',
         id: 3,
         value: 9,
       },

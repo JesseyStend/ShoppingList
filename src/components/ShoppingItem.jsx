@@ -4,9 +4,10 @@ class ShoppingItem extends Component {
   constructor(props) {
     super(props);
     this.state.count = props.counter.value;
+    this.state.name = props.counter.name;
   }
 
-  state = { count: 0 };
+  state = { count: 0, name: '' };
 
   styles = {
     fontWeight: 'bold',
@@ -14,6 +15,7 @@ class ShoppingItem extends Component {
   render() {
     return (
       <div>
+        <span>{this.state.name}</span>
         <span style={this.styles} className={this.getBadgeClasses()}>
           {this.formateCount()}
         </span>
