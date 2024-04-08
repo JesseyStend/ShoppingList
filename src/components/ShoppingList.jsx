@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import ShoppingItem from './ShoppingItem';
+import React, { Component } from "react";
+import ShoppingItem from "./ShoppingItem";
 
 class ShoppingList extends Component {
   state = {
     list: [],
     savedList: [],
-    formValue: '',
+    formValue: "",
   };
 
   constructor(props) {
@@ -22,15 +22,15 @@ class ShoppingList extends Component {
 
     return (
       <div>
-        <button onClick={() => this.Reset()} className="btn btn-primary btn-sm m-2">
+        <button onClick={() => this.Reset()} className='btn btn-primary btn-sm m-2'>
           Reset
         </button>
-        <button onClick={() => this.Save()} className="btn btn-primary btn-sm m-2">
+        <button onClick={() => this.Save()} className='btn btn-primary btn-sm m-2'>
           Save
         </button>
         <form>
-          <input type="text" ref={(c) => (this.state.formValue = c)} />
-          <button onClick={this.AddItem} className="btn btn-success btn-sm m-2">
+          <input type='text' ref={(c) => (this.state.formValue = c)} />
+          <button onClick={this.AddItem} className='btn btn-success btn-sm m-2'>
             Add
           </button>
         </form>
