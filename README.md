@@ -8,7 +8,7 @@ My idea is to give this project a revamp.
 
 ![old ui](image.png)
 
-### Notible featback
+### Notable feedback
 
 - It's not really clear that this would be a shopping list.
 - After a refresh, the content is reset to its original state.
@@ -23,6 +23,6 @@ My idea is to give this project a revamp.
 
 ### Nice to haves
 
-- [ ] Add suggested recepies to add ingredients to shopping list
+- [ ] Add suggested recipes to add ingredients to shopping list
 - [ ] Instead of cookies, use a small db to store shopping list
-- [ ] Crud system to add your own recepies
+- [ ] Crud system to add your own recipes
