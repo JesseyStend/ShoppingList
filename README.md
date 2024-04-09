@@ -17,7 +17,7 @@ My idea is to give this project a revamp.
 
 ## To do's & Ideas
 
-- [ ] Move to Next.js because SSR is awesome
+- [x] Move to Next.js because SSR is awesome
 - [ ] Restyle page using shadcn/ui and tailwind
 - [ ] Use cookies to store list of items
 
