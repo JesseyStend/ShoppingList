@@ -18,11 +18,15 @@ My idea is to give this project a revamp.
 ## To do's & Ideas
 
 - [x] Move to Next.js because SSR is awesome
-- [ ] Restyle page using shadcn/ui and tailwind
+- [x] Restyle page using shadcn/ui and tailwind
 - [ ] Use cookies to store list of items
+  
+### Known bugs
+- [ ] Default value on selects don't really work
 
 ### Nice to haves
 
 - [ ] Add suggested recipes to add ingredients to shopping list
 - [ ] Instead of cookies, use a small db to store shopping list
 - [ ] Crud system to add your own recipes
+- [ ] Make it clear the badge is clickable
