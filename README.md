@@ -6,7 +6,7 @@ My idea is to give this project a revamp.
 
 ## This is how it used to look
 
-![old ui](image.png)
+![image](https://github.com/JesseyStend/ShoppingList/assets/26957892/4846c884-7bce-4900-908e-42e7827ddb54)
 
 ### Notable feedback
 
