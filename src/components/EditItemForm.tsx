@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { Form, FormField, FormItem, FormControl } from "@/components/ui/form";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -14,26 +20,20 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Button } from "./ui/button";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "./ui/collapsible";
-import { ChevronsUpDown } from "lucide-react";
-import { Card, CardContent } from "./ui/card";
+import { Product } from "@/types/product";
+import { Trash2 } from "lucide-react";
+import { useProduct } from "@/app/hooks/useProjects";
 
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "product name must be at least 2 characters.",
   }),
-  quantity: z.number().int().min(1, {
-    message: "quantity must be at least 1.",
-  }),
+  quantity: z.coerce.number(),
   units: z.string().default("Units"),
 });
 
-export default function EditItemFrom() {
-  const [isOpen, setIsOpen] = React.useState(true);
+export default function EditItemFrom(props: Product) {
+  const { editProduct, removeProduct } = useProduct();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,7 +42,7 @@ export default function EditItemFrom() {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit((data) => console.log(data))}
+        onSubmit={form.handleSubmit(editProduct)}
         className="flex flex-col gap-4"
         name="edit-item-form"
       >
@@ -50,11 +50,13 @@ export default function EditItemFrom() {
         <FormField
           control={form.control}
           name="name"
+          defaultValue={props.name}
           render={({ field }) => (
             <FormItem>
               <FormControl>
                 <Input {...field} placeholder="Product Name" />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -62,6 +64,7 @@ export default function EditItemFrom() {
           <FormField
             control={form.control}
             name="quantity"
+            defaultValue={props.quantity}
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormControl>
@@ -78,6 +81,7 @@ export default function EditItemFrom() {
           <FormField
             control={form.control}
             name="units"
+            defaultValue={props.units}
             render={({ field }) => (
               <FormItem className=" flex-none">
                 <FormControl>
@@ -101,7 +105,19 @@ export default function EditItemFrom() {
             )}
           />
         </div>
-        <Button type="submit">Save</Button>
+        <div className="flex gap-2">
+          <Button type="submit" className="flex-1">
+            Save
+          </Button>
+          <Button
+            type="reset"
+            variant="ghost"
+            onClick={() => removeProduct(props.name)}
+          >
+            <Trash2 className=" stroke-destructive" />
+            <span className=" sr-only">Delete</span>
+          </Button>
+        </div>
       </form>
     </Form>
   );

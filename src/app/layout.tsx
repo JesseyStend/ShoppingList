@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import NavBar from "@/components/NavBar";
 import { cn } from "@/lib/utils";
+import { ProductProvider } from "./hooks/useProjects";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.className, "flex flex-col h-screen")}>
         <NavBar />
-        {children}
+        <ProductProvider>{children}</ProductProvider>
       </body>
     </html>
   );

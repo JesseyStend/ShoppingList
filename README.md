@@ -19,14 +19,14 @@ My idea is to give this project a revamp.
 
 - [x] Move to Next.js because SSR is awesome
 - [x] Restyle page using shadcn/ui and tailwind
-- [ ] Use cookies to store list of items
+- [x] Use local storage to store list of items
   
 ### Known bugs
-- [ ] Default value on selects don't really work
+- [x] Default value on selects don't really work
 
 ### Nice to haves
 
 - [ ] Add suggested recipes to add ingredients to shopping list
-- [ ] Instead of cookies, use a small db to store shopping list
+- [ ] Instead of local storage, use a small db to store shopping list
 - [ ] Crud system to add your own recipes
 - [ ] Make it clear the badge is clickable

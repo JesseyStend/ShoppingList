@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { Form, FormField, FormItem, FormControl } from "@/components/ui/form";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -21,23 +27,36 @@ import {
 } from "./ui/collapsible";
 import { ChevronsUpDown } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
+import { useProduct } from "@/app/hooks/useProjects";
 
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "product name must be at least 2 characters.",
   }),
-  quantity: z.number().int().min(1, {
-    message: "quantity must be at least 1.",
-  }),
+  quantity: z.coerce.number(),
   units: z.string().default("Units"),
 });
 
+export type formValue = z.infer<typeof formSchema>;
+
 export default function AddItemFrom() {
   const [isOpen, setIsOpen] = React.useState(true);
+  const { addProduct } = useProduct();
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<formValue>({
     resolver: zodResolver(formSchema),
   });
+
+  async function onSubmit(values: formValue) {
+    console.log(values);
+
+    try {
+      addProduct(values);
+      // form.reset();
+    } catch (error: any) {
+      form.setError("root", { message: error });
+    }
+  }
 
   return (
     <Card>
@@ -53,7 +72,7 @@ export default function AddItemFrom() {
           <CollapsibleContent>
             <CardContent>
               <form
-                onSubmit={form.handleSubmit((data) => console.log(data))}
+                onSubmit={form.handleSubmit(onSubmit)}
                 className="flex flex-col gap-4"
               >
                 <FormField
@@ -87,6 +106,7 @@ export default function AddItemFrom() {
                   <FormField
                     control={form.control}
                     name="units"
+                    defaultValue="Units"
                     render={({ field }) => (
                       <FormItem className=" flex-none">
                         <FormControl>
@@ -96,7 +116,7 @@ export default function AddItemFrom() {
                           >
                             <FormControl>
                               <SelectTrigger className="border-none">
-                                <SelectValue defaultValue="Units" />
+                                <SelectValue />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -113,6 +133,7 @@ export default function AddItemFrom() {
                   />
                 </div>
                 <Button type="submit">Add Item</Button>
+                <FormMessage />
               </form>
             </CardContent>
           </CollapsibleContent>
