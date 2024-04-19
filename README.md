@@ -26,7 +26,7 @@ My idea is to give this project a revamp.
 
 ### Nice to haves
 
-- [ ] Add suggested recipes to add ingredients to shopping list
+- [x] Add suggested recipes to add ingredients to shopping list
 - [ ] Instead of local storage, use a small db to store shopping list
 - [ ] Crud system to add your own recipes
 - [ ] Make it clear the badge is clickable

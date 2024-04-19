@@ -1,11 +1,13 @@
 "use client";
 import { Product } from "@/types/product";
+import { Recipe } from "@/types/recipe";
 import { createContext, useContext, useState, useEffect, use } from "react";
 
 // Define the product context
 interface ProductContextType {
   products: Product[];
   addProduct: (product: Product) => void;
+  addRecipe: (recipe: Recipe) => void;
   editProduct: (product: Product) => Product;
   removeProduct: (name: string) => void;
 }
@@ -64,9 +66,17 @@ export const ProductProvider: React.FunctionComponent<
     setProducts(change);
   };
 
+  const addRecipe = (recipe: Recipe) => {
+    let change = [...products, ...recipe.ingredients];
+
+    localStorage.setItem("products", JSON.stringify(change));
+    setProducts(change);
+  };
+
   const productContextValue: ProductContextType = {
     products,
     addProduct,
+    addRecipe,
     editProduct,
     removeProduct,
   };

@@ -23,13 +23,14 @@ import { Button } from "./ui/button";
 import { Product } from "@/types/product";
 import { Trash2 } from "lucide-react";
 import { useProduct } from "@/app/hooks/useProjects";
+import { zUnits } from "@/types/units";
 
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "product name must be at least 2 characters.",
   }),
   quantity: z.coerce.number(),
-  units: z.string().default("Units"),
+  units: zUnits.default("Units"),
 });
 
 export default function EditItemFrom(props: Product) {
@@ -96,8 +97,8 @@ export default function EditItemFrom(props: Product) {
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="Units">Units</SelectItem>
-                      <SelectItem value="Gram">Grams</SelectItem>
-                      <SelectItem value="Milliliter">Milliliter</SelectItem>
+                      <SelectItem value="g">Grams</SelectItem>
+                      <SelectItem value="ml">Milliliter</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>

@@ -8,10 +8,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import React, { Suspense } from "react";
 import { useProduct } from "./hooks/useProjects";
 import { Product } from "@/types/product";
+import RecipeList from "@/components/RecipeList";
 
 const ProductItem: React.FunctionComponent<
   React.HTMLAttributes<HTMLDivElement> & Product
@@ -38,17 +39,20 @@ export default function Home() {
   const { products } = useProduct();
 
   return (
-    <main className="container py-4 flex-1 flex flex-col gap-4 max-w-96">
-      <AddItemFrom />
-      <ScrollArea className="flex-1 gap-4">
-        {products.map((product) => (
-          <ProductItem
-            className=""
-            key={`${product.name}-${product.quantity}${product.units}`}
-            {...product}
-          />
-        ))}
-      </ScrollArea>
+    <main className="flex lg:container">
+      <div className="col-span-2 p-4 flex-1 flex flex-col gap-4 lg:col-span-1">
+        <AddItemFrom />
+        <ScrollArea className="flex-1 gap-4">
+          {products.map((product) => (
+            <ProductItem
+              className=""
+              key={`${product.name}-${product.quantity}${product.units}`}
+              {...product}
+            />
+          ))}
+        </ScrollArea>
+      </div>
+      <RecipeList />
     </main>
   );
 }
