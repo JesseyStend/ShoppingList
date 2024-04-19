@@ -27,6 +27,6 @@ export const chiliConCarne: Recipe = {
     { name: "Coriander", quantity: 1, units: "Units" },
     { name: "Sour cream", quantity: 125, units: "ml" },
     { name: "Chili powder", quantity: 1, units: "Units" },
-    { name: "kidney beans", quantity: 400, units: "g" },
+    { name: "Kidney beans", quantity: 400, units: "g" },
   ],
 };
